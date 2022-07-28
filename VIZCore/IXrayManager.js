@@ -1,0 +1,1 @@
+class Xray{constructor(a,b){let c=this;this['Main']=a,this['Enable']=function(d){c['Main']['Mode']['Xray'](d);},this['Select']=function(d,e){if(e)c['Main']['Data']['SetObjectCustomColor'](d,undefined);else c['Main']['Data']['ClearObjectCustomColor'](d);},this['Clear']=function(d){c['Main']['Data']['ClearObjectCustomColor'](d);};}}export default Xray;
