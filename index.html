@@ -13,6 +13,98 @@
 
         let view = document.getElementById("view");
         view.className = "VIZCore";
+
+		//LJJ
+		 view.style.left = "15%";   //view_info 사이즈 만큼 제외
+        view.style.width = "85%";   //view_info 사이즈 만큼 제외
+        
+        let view_info = document.getElementById("view_info");
+        view_info.style.display = "block";
+
+        let view_Btn = document.getElementById("view_Button");
+        view_Btn.style.left = "0";   //좌측
+        view_Btn.style.width = "15%";   //좌측
+        view_Btn.style.display = "block";
+
+        let loadMultiModel = 0;
+        let loadFileIdx = 0;
+
+		let openModel_NBL_AREA4 = function() {
+            loadMultiModel = 0;
+            vizwide3d.Model.OpenHeader("./VIZCore/Model/AREA4/AREA4.NWC_wh.vizw");
+			};
+
+		let openModel_OMSK1 = function() {
+            loadMultiModel = 0;
+            vizwide3d.Model.OpenHeader("./VIZCore/Model/OMSK/VIEW1/VIEW1_wh.vizw");
+			};
+
+		let openModel_OMSK2 = function() {
+            loadMultiModel = 0;
+            vizwide3d.Model.OpenHeader("./VIZCore/Model/OMSK/VIEW2/VIEW2_wh.vizw");
+			};
+
+
+		//사용자 UI 설정
+        {
+			//#region 모델열기
+            let view_BtnOffset = 0;
+
+            let divCtrl = document.createElement('div');
+            divCtrl.id = "VIZCore_Daelim_control";
+            divCtrl.className = "ui_VIZCore_Daelim_control";
+
+            view_Btn.appendChild(divCtrl);
+       
+            let btnModelOpen_NBL_AREA4 = document.createElement('div');
+            btnModelOpen_NBL_AREA4.id = divCtrl.id + "btnModelOpen_NBL_AREA4";
+            btnModelOpen_NBL_AREA4.className = "ui_button_large";
+            btnModelOpen_NBL_AREA4.innerHTML = "AREA4 모델";
+            btnModelOpen_NBL_AREA4.style.margin = "4px";            
+            
+            divCtrl.appendChild(btnModelOpen_NBL_AREA4);
+
+            $("#" +divCtrl.id + "btnModelOpen_NBL_AREA4").on('click', function() {
+                openModel_NBL_AREA4();
+            });
+
+			let btnModelOpen_OMSK1 = document.createElement('div');
+            btnModelOpen_OMSK1.id = divCtrl.id + "btnModelOpen_OMSK1";
+            btnModelOpen_OMSK1.className = "ui_button_large";
+            btnModelOpen_OMSK1.innerHTML = "OMSK I";
+            btnModelOpen_OMSK1.style.margin = "4px";            
+            
+            divCtrl.appendChild(btnModelOpen_OMSK1);
+
+            $("#" +divCtrl.id + "btnModelOpen_OMSK1").on('click', function() {
+                openModel_OMSK1();
+            });
+
+			let btnModelOpen_OMSK2 = document.createElement('div');
+            btnModelOpen_OMSK2.id = divCtrl.id + "btnModelOpen_OMSK2";
+            btnModelOpen_OMSK2.className = "ui_button_large";
+            btnModelOpen_OMSK2.innerHTML = "OMSK II";
+            btnModelOpen_OMSK2.style.margin = "4px";            
+            
+            divCtrl.appendChild(btnModelOpen_OMSK2);
+
+            $("#" +divCtrl.id + "btnModelOpen_OMSK2").on('click', function() {
+                openModel_OMSK2();
+            });
+
+			let btnModelClose = document.createElement('div');
+            btnModelClose.id = divCtrl.id + "btnModelClose";
+            btnModelClose.className = "ui_button_large";
+            btnModelClose.innerHTML = "모델 닫기";
+            btnModelClose.style.margin = "4px";
+            divCtrl.appendChild(btnModelClose);
+
+            $("#" + divCtrl.id + "btnModelClose").on('click', function() {
+                vizwide3d.Model.Close();
+            });
+		}
+		//LJJ
+
         let vizwide3d = new VIZWide3D(view);
         //console.log("import - call");
         let initresult = vizwide3d.Init();
@@ -42,7 +134,8 @@
         }
 
         if (initresult === true) {
-            
+            // Toolbar 사용
+            let toolbar = new vizwide3d.Toolbar(view, vizwide3d, VIZCore);
             // Add Event Handler : Loading Completed Event (로딩 완료 이벤트)
             vizwide3d.Model.OnModelOpenedEvent(onLoadingCompleted);
 
@@ -56,12 +149,7 @@
         }
 
         // Init.
-        vizwide3d.Model.OpenHeader("./VIZCore/Model/toycar/vizw/toycar_wh.vizw");
-		
-		//vizwide3d.Frame.OpenUri('./VIZCore/Model/ShipGrid/8222.json');
-        let str = "[{\"axis\":\"X\",\"axisId\":0,\"label\":\"FR\",\"items\":[{\"id\":0,\"offset\":1},{\"id\":1,\"offset\":2}]},{\"axis\":\"Y\",\"axisId\":1,\"label\":\"LP\",\"items\":[{\"id\":0,\"offset\":0},{\"id\":0,\"offset\":1}]},{\"axis\":\"Z\",\"axisId\":2,\"label\":\"LP\",\"items\":[{\"id\":0,\"offset\":1},{\"id\":1,\"offset\":2}]}]"
-        vizwide3d.Frame.OpenString(str);
-        vizwide3d.Frame.ShowNumberAllStep(true);
+        vizwide3d.Model.OpenHeader("./VIZCore/Model/AREA4/AREA4.NWC_wh.vizw");
 
     </script>
 </head>
@@ -69,5 +157,6 @@
     <div id="view"></div>
     <div id="viewDual"></div>
     <div id="view_info" class="view_info"></div>
+	<div id="view_Button" class="view_info"></div>
 </body>
 </html>
