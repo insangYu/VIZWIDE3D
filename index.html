@@ -29,9 +29,9 @@
         let loadMultiModel = 0;
         let loadFileIdx = 0;
 
-		let openModel_NBL_AREA4 = function() {
+		let openModel_Toycar = function() {
             loadMultiModel = 0;
-            vizwide3d.Model.OpenHeader("./VIZCore/Model/AREA4/AREA4.NWC_wh.vizw");
+            vizwide3d.Model.OpenHeader("./VIZCore/Model/toycar/vizw/toycar_wh.vizw");
 			};
 
 		let openModel_OMSK1 = function() {
@@ -56,16 +56,16 @@
 
             view_Btn.appendChild(divCtrl);
        
-            let btnModelOpen_NBL_AREA4 = document.createElement('div');
-            btnModelOpen_NBL_AREA4.id = divCtrl.id + "btnModelOpen_NBL_AREA4";
-            btnModelOpen_NBL_AREA4.className = "ui_button_large";
-            btnModelOpen_NBL_AREA4.innerHTML = "AREA4 모델";
-            btnModelOpen_NBL_AREA4.style.margin = "4px";            
+            let btnModelOpen_Toycar = document.createElement('div');
+            btnModelOpen_Toycar.id = divCtrl.id + "btnModelOpen_Toycar";
+            btnModelOpen_Toycar.className = "ui_button_large";
+            btnModelOpen_Toycar.innerHTML = "Toycar";
+            btnModelOpen_Toycar.style.margin = "4px";            
             
-            divCtrl.appendChild(btnModelOpen_NBL_AREA4);
+            divCtrl.appendChild(btnModelOpen_Toycar);
 
-            $("#" +divCtrl.id + "btnModelOpen_NBL_AREA4").on('click', function() {
-                openModel_NBL_AREA4();
+            $("#" +divCtrl.id + "btnModelOpen_Toycar").on('click', function() {
+                openModel_Toycar();
             });
 
 			let btnModelOpen_OMSK1 = document.createElement('div');
